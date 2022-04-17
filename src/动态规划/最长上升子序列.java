@@ -7,6 +7,9 @@ package 动态规划;
 //  e.g. 1,5,3,4,6,9,7,8 的LIS为 1,3,4,6,7,8，长度为6
 //  [4,10,4,3,8,9] -> 3
 
+
+// leetcode 已通过 https://leetcode-cn.com/problems/longest-increasing-subsequence/submissions/
+//
 public class 最长上升子序列 {
 
     public static void main(String[] args) {
@@ -29,6 +32,7 @@ public class 最长上升子序列 {
             records[i] = fn(nums, records, i);
         }
 
+        // 求最大值
         int result = 0;
         for (int i = 0; i < records.length; i++) {
             if (result < records[i]) {
@@ -41,11 +45,11 @@ public class 最长上升子序列 {
 
     private static int fn(int[] cs, int[] record, int n) {
 
-        int a_n = cs[n];
         int result = 1;
         for (int i = 0; i < n; i++) {
-            int a_i = cs[i];
-            int r_i = a_n > a_i? record[i] + 1 : 1;
+            int r_i = cs[n] > cs[i]? record[i] + 1 : 1; // 注意如果这里 cs[n] <= cs[i]，r_i 为 1，因为条件限定了必须带上最后一个字符的最长上升子序列
+
+            //
             if (r_i > result) {
                 result = r_i;
             }

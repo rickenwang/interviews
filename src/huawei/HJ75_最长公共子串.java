@@ -8,7 +8,7 @@ import java.util.Scanner;
 // f(m, n) = f(m-1, n-1) + 1  if a[m]==b[n]
 // f(m, n) = 0  if a[m]!=b[n]
 
-public class HJ75 {
+public class HJ75_最长公共子串 {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -22,24 +22,21 @@ public class HJ75 {
     }
 
 
+    // 对于字符序列 a 和 b
+    // f[i][j] 表示以第 i 个字符结尾的 a 子串和以第 j 个字符结尾的 b 子串的最长公共子串的长度，那么有：
+    // f[i][j] = f[i-1][j-1] + 1 如果 a[i]==b[j]
     public static int maxSubString(String a, String b) {
 
         char[] as = a.toCharArray();
         char[] bs = b.toCharArray();
         int[][] f = new int[as.length][bs.length];
 
-        int max = 0;
+
         for (int i = 0; i < bs.length; i++) {
             f[0][i] = as[0] == bs[i]? 1:0;
-            if (max < f[0][i]) {
-                max = f[0][i];
-            }
         }
         for (int i = 0; i < as.length; i++) {
             f[i][0] = as[i] == bs[0]? 1:0;
-            if (max < f[i][0]) {
-                max = f[i][0];
-            }
         }
 
         for (int i = 1; i < as.length; i++) {
@@ -50,13 +47,11 @@ public class HJ75 {
                 } else {
                     f[i][j] = 0;
                 }
-
-                if (max < f[i][j]) {
-                    max = f[i][j];
-                }
             }
         }
-        return max;
+
+        // return max;
+        return -1;
     }
 
 }
