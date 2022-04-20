@@ -14,7 +14,7 @@ package huawei;
 import java.util.*;
 
 // 这个就是最长回文子串
-public class HJ32_密码截取_最长回文子串_动态规划 {
+public class HJ32_最长回文子串_密码截取_动态规划 {
 
 
     public static void main(String[] args) {

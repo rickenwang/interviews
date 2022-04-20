@@ -1,5 +1,6 @@
 package huawei;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,13 +18,13 @@ public class HJ77_火车站进站 {
 
         // 注意 hasNext 和 hasNextLine 的区别
         while (in.hasNextLine()) { // 注意 while 处理多个 case
+            String n = in.nextLine();
             String s = in.nextLine();
             String[] ss = s.split(" ");
-            int[] is = new int[ss.length];
-            for (int i = 0; i < ss.length; i++) {
-                is[i] = Integer.valueOf(ss[i]);
+            List<String> result = new Solution().solve(ss);
+            for (String r: result) {
+                System.out.println(r);
             }
-            System.out.println(new Solution().solve(is));
         }
     }
 
@@ -31,29 +32,60 @@ public class HJ77_火车站进站 {
     static class Solution {
 
 
-        private String[] solve(String[] ids) {
+        private List<String> solve(String[] ids) {
 
             //
-            List<String> recorder = new LinkedList<>();
+            LinkedList<String> stack = new LinkedList<>();
+            LinkedList<String> out = new LinkedList<>();
+            LinkedList<String> recorder = new LinkedList<>();
 
+            for (String id: ids) {
+                out.addLast(id);
+            }
 
-
+            dfs(stack, out, "", recorder);
+            recorder.sort(new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+                    return o1.compareTo(o2);
+                }
+            });
+            return recorder;
         }
 
         /**
          *
          * @param stack 车站现有的火车
+         * @param out 还未开进车站的火车
          * @param route 记录当前已经开出的火车
          * @param recorder 记录完整路径
          */
-        private void dfs(List<String> stack, String route, List<String> recorder) {
+        private void dfs(LinkedList<String> stack, LinkedList<String> out, String route, List<String> recorder) {
 
+            // 压栈
+            if (!out.isEmpty()) {
+                LinkedList<String> newStack = new LinkedList<>(stack);
+                LinkedList<String> newOut = new LinkedList<>(out);
 
+                String pushEle = newOut.removeFirst();
+                newStack.addLast(pushEle);
+                dfs(newStack, newOut, route, recorder);
+            }
 
+            // 出栈
+            if (!stack.isEmpty()) {
+                LinkedList<String> newStack = new LinkedList<>(stack);
+                LinkedList<String> newOut = new LinkedList<>(out);
 
+                String popEle = newStack.removeLast();
+                dfs(newStack, newOut, (route + " " + popEle).trim(), recorder);
+            }
 
+            // 全部的车都处理了，记录路径
+            if (stack.isEmpty() && out.isEmpty()) {
+                recorder.add(route);
+            }
         }
-
 
     }
 
