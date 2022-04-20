@@ -16,6 +16,7 @@ public class 最长上升子序列 {
 
         int[] nums = new int[]{4,10,4,3,8,9};
         System.out.println(maxSubLen(nums));
+        // add git rebase test
     }
 
 

@@ -21,7 +21,7 @@ import java.util.Scanner;
 //
 // 输出：
 //        true
-public class HJ67_24点游戏_重点关注 {
+public class HJ67_24点游戏_不含括号_重点关注 {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
