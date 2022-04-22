@@ -1,31 +1,10 @@
 package huawei;
 
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-import java.math.BigDecimal;
 import java.util.*;
 
-//  Levenshtein 距离，又称编辑距离，指的是两个字符串之间，由一个转换成另一个所需的最少编辑操作次数。
-//  许可的编辑操作包括：
-//  1. 将一个字符替换成另一个字符，
-//  2. 插入一个字符，
-//  3. 删除一个字符。
 //
-//  编辑距离的算法是首先由俄国科学家 Levenshtein 提出的，故又叫 Levenshtein Distance 。
-//
-//        例如：
-//
-//        字符串A: abcdefg
-//
-//        字符串B: abcdef
-//
-//        通过增加或是删掉字符 ”g” 的方式达到目的。这两种方案都需要一次操作。把这个操作所需要的次数定义为两个字符串的距离。
-//
-//        要求：
-//
-//        给定任意两个字符串，写出一个算法计算它们的编辑距离。
+//  输入一个表达式（用字符串表示），求这个表达式的值。
+//  保证字符串中的有效字符包括[‘0’-‘9’],‘+’,‘-’, ‘*’,‘/’ ,‘(’， ‘)’,‘[’, ‘]’,‘{’ ,‘}’。且表达式一定合法。
 
 public class HJ50_四则运算 {
 
@@ -129,3 +108,62 @@ public class HJ50_四则运算 {
     }
 
 }
+
+// cp
+class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        int n = s.length();
+        int num1 = 0;
+        int o1 = 1;
+        int num2 = 1;
+        int o2 = 1;
+        Stack<Integer> stk = new Stack<>();
+
+        for(int i=0; i<n; i++){
+            char c = s.charAt(i);
+            if(Character.isDigit(c)){  //遇到数字则定义num2
+                int cur = 0;
+                while(i<n && Character.isDigit(s.charAt(i))){
+                    cur = cur * 10 + (s.charAt(i) - '0');
+                    i++;
+                }
+                i--;
+                num2 = o2 == 1 ? num2 * cur : num2 / cur;
+            }else if(c=='*' || c=='/'){  //遇到×÷定义o2
+                o2 = c == '*' ? 1 : -1;
+            }else if(c == '(' || c=='{' || c=='['){  //遇到括号则保存当前结果，并初始化
+                stk.push(num1);
+                stk.push(o1);
+                stk.push(num2);
+                stk.push(o2);
+
+                num1 = 0;
+                o1 = 1;
+                num2 = 1;
+                o2 = 1;
+            }else if(c == '+' || c=='-'){  //遇到加减，说明可以开始计算，计算num1并对定义其他几个变量
+                if(c=='-' && (i==0 || s.charAt(i-1)=='(' || s.charAt(i-1)=='[' || s.charAt(i-1)=='{')){
+                    o1 = -1;
+                    continue;
+                }
+                num1 = num1 + o1 * num2;
+                o1 = (c == '+' ? 1 : -1);
+                num2 = 1;
+                o2 = 1;
+            }else{  //遇到右括号，则出栈，并计算num2
+                int cur = num1 + o1 * num2;
+                o2 = stk.pop();
+                num2 = stk.pop();
+                o1 = stk.pop();
+                num1 = stk.pop();
+
+                num2 = o2 == 1 ? num2 * cur : num2 / cur;
+            }
+        }
+        System.out.println(num1 + o1 * num2);
+    }
+}
+
+

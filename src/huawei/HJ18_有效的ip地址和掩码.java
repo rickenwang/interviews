@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 //
-// 输入一个 int 型的正整数，计算出该 int 型数据在内存中存储时 1 的个数。
+//
 
 public class HJ18_有效的ip地址和掩码 {
 

@@ -1,5 +1,8 @@
 package huawei;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,15 +14,15 @@ import java.util.Scanner;
 
 public class HJ82_将真分数分解为埃及分数 {
 
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-
-        // 注意 hasNext 和 hasNextLine 的区别
-        while (in.hasNextLine()) { // 注意 while 处理多个 case
-            String s = in.nextLine();
-            System.out.println(new Solution().solve(s));
-        }
-    }
+//    public static void main(String[] args) {
+//        Scanner in = new Scanner(System.in);
+//
+//        // 注意 hasNext 和 hasNextLine 的区别
+//        while (in.hasNextLine()) { // 注意 while 处理多个 case
+//            String s = in.nextLine();
+//            System.out.println(new Solution().solve(s));
+//        }
+//    }
 
 
 
@@ -36,4 +39,35 @@ public class HJ82_将真分数分解为埃及分数 {
 
     }
 
+
+    // copy
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str;
+        while((str = br.readLine())!=null) {
+            String[] ss = str.split("/");
+            long a = Integer.parseInt(ss[0]);
+            long b = Integer.parseInt(ss[1]);
+            long t;
+            StringBuilder sb = new StringBuilder();
+            while(a != 0) {
+                t = b/a + (b%a==0?0:1);
+                if (b % t == 0 && a >= t) {
+                    a -= b/t;
+                    sb.append('1').append('/').append(t).append('+');
+                } else {
+                    a = a * t - b;
+                    b = b * t;    // 这里可能溢出，所以都用long
+                    if(a!=0)sb.append('1').append('/').append(t).append('+');
+                    else sb.append('1').append('/').append(t);
+                }
+                if(a == 1) {
+                    sb.append('1').append('/').append(b);
+                    break;
+                }
+            }
+            System.out.println(sb);
+
+        }
+    }
 }

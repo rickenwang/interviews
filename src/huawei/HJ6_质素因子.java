@@ -22,6 +22,7 @@ public class HJ6_质素因子 {
 
     }
 
+    // 这个算法有超时，对于 2000000014 预期输出为 2 1000000007
     private static void split(int s) {
 
         int nextPrime = 2;
@@ -53,10 +54,15 @@ public class HJ6_质素因子 {
         return -1;
     }
 
+    // 判断一个数是否为质数
     private static boolean isPrimeNumber(int number) {
 
         if (number == 1 || number == 2) {
             return true;
+        }
+
+        if (number % 2 == 0) {
+            return false;
         }
 
         int len = (int) Math.sqrt(number) + 1;

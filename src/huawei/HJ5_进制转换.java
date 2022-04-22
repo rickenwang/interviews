@@ -1,6 +1,9 @@
 package huawei;
 
 
+import javafx.util.converter.BigIntegerStringConverter;
+
+import java.math.BigInteger;
 import java.util.*;
 
 //描述
@@ -22,7 +25,7 @@ import java.util.*;
 //        输出：
 //        170
 
-public class HJ5 {
+public class HJ5_进制转换 {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -30,11 +33,21 @@ public class HJ5 {
         // 注意 hasNext 和 hasNextLine 的区别
         while (in.hasNextLine()) { // 注意 while 处理多个 case
             String s = in.nextLine();
-            System.out.println(convert16To10(s));
+            System.out.println(convertWithBigInteger(s));
         }
+
+    }
+
+    // 用 bigInteger 更简单
+    private static long convertWithBigInteger(String s) {
+        BigInteger bigInteger = new BigInteger(s.substring(2), 16);
+        return bigInteger.longValue();
     }
 
     public static long convert16To10(String s) {
+
+        BigInteger bigInteger = new BigInteger("12", 5);
+        System.out.println(bigInteger.intValue());
 
         char[] cs = s.substring(2).toLowerCase().toCharArray();
         long result = 0;
