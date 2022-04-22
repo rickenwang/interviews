@@ -55,6 +55,7 @@ public class HJ41_称砝码 {
 
             for (int j = 0; j < cs[i]; j++) {
 
+                // 注意这里要先记录当前状态
                 boolean[] temp = new boolean[max + 1];
                 System.arraycopy(canWeights, 0, temp, 0, canWeights.length);
 

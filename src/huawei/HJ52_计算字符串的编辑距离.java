@@ -40,7 +40,7 @@ public class HJ52_计算字符串的编辑距离 {
     // 对于字符串 a 和 b
     // f[i][j] 表示以第 i 个字符结尾的 a 子串和以第 j 个字符结尾的 b 子串的编辑距离
     // f[i][j] = f[i-1][j-1]   如果 a[i]==b[j]
-    // f[i][j] = min(f[i-1][j], f[i][j-1], f[i-1][j-1])   如果 a[i]!=b[j]  // 分别对应删除 a[i], 删除 b[j] 和修改
+    // f[i][j] = min(f[i-1][j], f[i][j-1], f[i-1][j-1]) + 1   如果 a[i]!=b[j]  // 分别对应删除 a[i], 删除 b[j] 和修改
     public static int stringDistance(String a, String b) {
 
         char[] as = a.toCharArray();

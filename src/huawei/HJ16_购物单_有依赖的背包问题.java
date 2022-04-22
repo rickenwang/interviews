@@ -4,9 +4,9 @@ package huawei;
 import java.util.*;
 
 // https://www.nowcoder.com/practice/f9c6f980eeec43ef85be20755ddbeaf4?tpId=37&rp=1&ru=%2Fexam%2Foj%2Fta&qru=%2Fexam%2Foj%2Fta&sourceUrl=%2Fexam%2Foj%2Fta%3Fpage%3D1%26tpId%3D37%26type%3D37&difficulty=&judgeStatus=&tags=&title=&gioEnter=menu
-
-
-
+// 王强决定把年终奖用于购物，他把想买的物品分为两类：主件与附件，附件是从属于某个主件的，下表就是一些主件与附件的例子：
+//
+//
 public class HJ16_购物单_有依赖的背包问题 {
 
     public static void main(String[] args) {
@@ -36,7 +36,15 @@ public class HJ16_购物单_有依赖的背包问题 {
     // 满足条件：r > 0 表示依赖的主件编号
     // v[i]*w[i] 满意度最大
     //
-    // f[i][n] = max(f[i-1][n], f[i-1][n-v[i]] + v[i]*w[i])
+    // 将有依赖关系的物品划分到同一组，
+    // f[i][j] 表示前 i 组，总钱数为 j 时的能实现的最大价值，那么
+    // f[i][j] = max(   f[i-1][n], // 不买任何物品
+    //                  f[i-1][n-v[i]] + v[i]*w[i]  // 只买主件
+    //                  ... // 买 主 + A
+    //                  ... // 买 主 + B
+    //                  ... // 买 主 + A + B
+    //              )
+    //
 
     // n 总钱数、m 物品数
     // v 物品价格 w 重要度  r 主件的编号，为0表示自身为主件
