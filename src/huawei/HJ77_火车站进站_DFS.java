@@ -11,7 +11,7 @@ import java.util.Scanner;
 //
 // 要求输出所有火车出站的方案，以字典序排序输出。
 
-public class HJ77_火车站进站 {
+public class HJ77_火车站进站_DFS {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
