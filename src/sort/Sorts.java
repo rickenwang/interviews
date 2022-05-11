@@ -128,7 +128,7 @@ public class Sorts {
     /**
      * 快速排序
      *
-     * 
+     *
      */
     private static void quickSort(int[] ns) {
 
