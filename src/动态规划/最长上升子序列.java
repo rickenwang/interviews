@@ -17,6 +17,7 @@ public class 最长上升子序列 {
         int[] nums = new int[]{4,10,4,3,8,9};
         System.out.println(maxSubLen(nums));
         // add git rebase test
+        // git add test1
     }
 
 
@@ -26,6 +27,8 @@ public class 最长上升子序列 {
     // 那么最终的结果是 o(n) = Max{f(i)} 1<=i<=n
 
     private static int maxSubLen(int[] nums) {
+
+        // git add test1
 
         int[] records = new int[nums.length];
         records[0] = 1;
