@@ -1,6 +1,4 @@
-package 动态规划;
-
-import sun.jvm.hotspot.utilities.Assert;
+package 算法.动态规划;
 
 public class 背包01 {
 

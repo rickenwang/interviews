@@ -1,23 +1,17 @@
-package honor;
+package 算法.honor;
 
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
 // 给一个字符串，获取字符串中的数字并排序，输出字符串。
-public class KillMonster {
+public class GetNumberSort {
 
     public static void main(String[] args) {
 
-        System.out.println(new KillMonster().filterNumberAndSort("d46dbasud12fdstfr"));
+        System.out.println(new GetNumberSort().filterNumberAndSort("d46dbasud12fdstfr"));
 
     }
-
-//    public int killMaxMonster(int[][] maze) {
-//
-//
-//    }
-
 
 
     public String filterNumberAndSort(String s) {

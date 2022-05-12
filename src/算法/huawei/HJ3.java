@@ -1,4 +1,4 @@
-package huawei;
+package 算法.huawei;
 
 
 import java.util.*;

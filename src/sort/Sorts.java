@@ -11,7 +11,7 @@ public class Sorts {
                 8, 9, 8, 2, 3, 4, 7, 1
         };
         // selectSort(ns);
-        mergeSort(ns);
+        quickSort(ns);
         for (int i = 0; i< ns.length; i++) {
             System.out.print(ns[i] + " ");
         }
@@ -132,8 +132,38 @@ public class Sorts {
      */
     private static void quickSort(int[] ns) {
 
-
+        quickSort_(ns, 0, ns.length - 1);
     }
 
+
+    private static void quickSort_(int[] ns, int start, int end) {
+
+        if (start >= end) {
+            return ;
+        }
+
+        int k = partition(ns, start, end);
+        quickSort_(ns, start, k);
+        quickSort_(ns, k+1, end);
+    }
+
+    private static int partition(int[] ns, int start, int end) {
+
+        int base = ns[start];
+
+        while (start < end) {
+
+            while (start < end && ns[end] >= base) {
+                end--;
+            }
+            ns[start] = ns[end];
+            while (start < end && ns[start] <= base) {
+                start++;
+            }
+            ns[end] = ns[start];
+        }
+        ns[start] = base;
+        return start;
+    }
 
 }

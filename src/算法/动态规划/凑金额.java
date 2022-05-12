@@ -1,4 +1,4 @@
-package 动态规划;
+package 算法.动态规划;
 
 import java.util.*;
 
